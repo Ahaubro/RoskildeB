@@ -429,49 +429,6 @@ public class Main {
         }
     }
 
-    // Metode der finder et Child object for at redigere
-    //skal flettes sammen med editChild
-    public static void findChildToEdit(Scanner scan, LinkedList<Child> childs) {
-        System.out.print("Enter the first name of the child you wish to edit: ");
-        String name = scan.next();
-
-        for (int i = 0; i < childs.size(); i++) {
-            if (childs.get(i).getName().equals(name)) {
-                System.out.println("\n" + childs.get(i) + "\n");
-                editChild(scan, childs.get(i));
-            }
-        }
-    }
-
-    // Metode der redigere et child object
-    public static void editChild(Scanner scan, Child c1) {
-        int svar = 1;
-        while (svar != 0) {
-            System.out.println("Type 1 to edit name.\nType 2 to edit age.\nType 3 to edit CPR\nType 0 to return\n");
-            svar = scan.nextInt();
-
-            switch (svar) {
-                case 1:
-                    System.out.println("You have chosen to edit name\n----------------------------\nEnter new name: ");
-                    String newName = scan.next();
-                    c1.setName(newName);
-                    break;
-                case 2:
-                    System.out.println("You have chosen to edit age\n----------------------------\nEnter new age: ");
-                    int newAge = scan.nextInt();
-                    c1.setAge(newAge);
-                    break;
-                case 3:
-                    System.out.println("You have chosen to edit CPR\n---------------------------\nEnter new CPR: ");
-                    String newCPR = scan.next();
-                    c1.setCPR(newCPR);
-                    break;
-                case 0:
-                    System.out.println("Returning to main menu.");
-                    break;
-            }
-        }
-    }
 
     //metode til at fjerne et barn
     public static void deleteChild(Scanner scan, LinkedList<Child> childs) {
@@ -636,6 +593,47 @@ public class Main {
                             System.out.println("You have chosen to edit phone number\n---------------------------\nEnter new phone number: ");
                             int newNumber = scan.nextInt();
                             employees.get(i).setNumber(newNumber);
+                            break;
+                        case 0:
+                            System.out.println("Returning to main menu.");
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void editChild(Scanner scan, LinkedList<Child> childs) {
+        System.out.print("Enter the first name of the child you wish to edit: ");
+        String fname = scan.next();
+        System.out.print("Enter the last name of the child you wish to edit: ");
+        String lname = scan.next();
+        String name = fname + " " + lname;
+
+        for (int i = 0; i < childs.size(); i++) {
+            if (childs.get(i).getName().equals(name)) {
+                System.out.println("\n" + childs.get(i) + "\n");
+                int svar = 1;
+                while (svar != 0) {
+                    System.out.println("Type 1 to edit name.\nType 2 to edit age.\nType 3 to edit CPR\nType 0 to return\n");
+                    svar = scan.nextInt();
+
+                    switch (svar) {
+                        case 1:
+                            System.out.println("You have chosen to edit name\n----------------------------\nEnter new name: ");
+                            String temp = scan.nextLine();
+                            String newName = scan.nextLine();
+                            childs.get(i).setName(newName);
+                            break;
+                        case 2:
+                            System.out.println("You have chosen to edit age\n----------------------------\nEnter new age: ");
+                            int newAge = scan.nextInt();
+                            childs.get(i).setAge(newAge);
+                            break;
+                        case 3:
+                            System.out.println("You have chosen to edit CPR\n---------------------------\nEnter new CPR: ");
+                            String newCPR = scan.next();
+                            childs.get(i).setCPR(newCPR);
                             break;
                         case 0:
                             System.out.println("Returning to main menu.");
