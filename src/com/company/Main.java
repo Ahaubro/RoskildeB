@@ -13,6 +13,7 @@ public class Main {
         ArrayList<Child> waitlist = new ArrayList<>();
         ArrayList<Employee> employees = readEmployeeFromFile();
         LinkedList<Parent> parents = readParentFromFile(childs);
+        readWaitListFromFile(waitlist);
 
         mainMenu(scan, childs, waitlist, employees, parents);
 
@@ -28,8 +29,7 @@ public class Main {
                     "\nType 1 for child menu." +
                     "\nType 2 for parent menu" +
                     "\nType 3 for coworker menu." +
-                    "\nType 4 to registre a child to the waiting list." +
-                    "\nType 5 to print lists." +
+                    "\nType 4 to print lists." +
                     "\nType 0 to terminate program.");
             answer = scan.nextInt();
 
@@ -60,7 +60,11 @@ public class Main {
                             deleteChild(scan, childs);
 
 
-                        } else {
+                        }if(canswer == 4) {
+                            System.out.println("You have chosen to add a child to the waiting list." +
+                                    "\n----------------------------------------------------\n");
+                            waitlist.add(RegisterChild(scan, childs));
+                        }else {
                             //skal der være noget her?
                         }
                         childrensMenu();
@@ -68,7 +72,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("****** Parent Menu ******");
+                    System.out.println("\n******* Parent Menu *******");
                     System.out.println();
                     System.out.println("Type 1 to register parent.");
                     System.out.println("Type 2 to edit a parents information.");
@@ -93,7 +97,7 @@ public class Main {
                             panswer = scan.nextInt();
                         }*/
                         }
-                        System.out.println("***** Parent Menu *****");
+                        System.out.println("\n***** Parent Menu *****");
                         System.out.println();
                         System.out.println("Type 1 to register parent.");
                         System.out.println("Type 2 to edit a parents information.");
@@ -103,7 +107,7 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("******* Employee Menu *******");
+                    System.out.println("\n******* Employee Menu *******");
                     System.out.println();
                     System.out.println("Type 1 to add a new employee");
                     System.out.println("Type 2 to edit an employee");
@@ -135,13 +139,6 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("You have chosen to add a child to the waiting list." +
-                            "\n----------------------------------------------------\n");
-                    waitlist.add(RegisterChild(scan, childs));
-                    break;
-                case 5:
-                    System.out.println("You have chosen to print lists");
-                    System.out.println("--------------------------------");
                     printList(scan, childs, waitlist, employees, parents);
                 case 0:
                     writeToFileChild(childs);
@@ -332,20 +329,24 @@ public class Main {
         return parents;
     }
 
-    /* public static void readWaitListFromFile(Scanner scan, ArrayList<Child> waitlist) throws FileNotFoundException {
-        Scanner load = new Scanner(new File("WaitList.txt"));
+    public static ArrayList<Child> readWaitListFromFile(ArrayList<Child> waitlist) throws FileNotFoundException {
+        Scanner scan = new Scanner(new File("waitList.txt"));
         while (scan.hasNextLine()) {
-
-            String name = load.next();
+            String line = scan.nextLine();
+            Scanner load = new Scanner(line);
+            String fname = load.next();
+            String lname = load.next();
+            String name = fname + " " + lname;
             int age = load.nextInt();
             String CPR = load.next();
 
-            Child c = new Child(name, age, CPR);
+            Child cc = new Child(name, age, CPR);
 
-            childs.add(c);
+            waitlist.add(cc);
 
         }
-    }*/
+        return waitlist;
+    }
 
     public static ArrayList<Employee> readEmployeeFromFile() throws FileNotFoundException {
         Scanner scan = new Scanner(new File("EmployeeList.txt"));
@@ -499,7 +500,7 @@ public class Main {
         boolean foundCPR = false;
         String personalNumber = scan.next();
         for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getCPR() == personalNumber) {
+            if (employees.get(i).getCPR().equals(personalNumber)) {
                 employees.remove(i);
                 foundCPR = true;
                 break;
@@ -516,10 +517,10 @@ public class Main {
     }
 
     public static void childrensMenu() {
-        System.out.printf("%21s %n", "\n****** Child Menu ******");
+        System.out.printf("%21s %n", "\n********* Child Menu *********");
         System.out.println("\nType 1 to register a new child.\n" +
                 "Type 2 to edit a childs information.\nType 3 to remove child" +
-                "\nType 0 to return to main menu.");
+                "\nType 4 to registre a child to the waiting list to\nType 0 to return to main menu.");
     }
 
     public static void printlistmenu() {
