@@ -50,7 +50,7 @@ public class Main {
                             Child c1 = childs.get(0);
                             System.out.println("You have chosen to edit a child");
                             System.out.println("-------------------------------");
-                            findChildToEdit(scan, childs);
+                            editChild(scan, childs);
 
 
                         }
@@ -489,17 +489,6 @@ public class Main {
                 "\n5. The employee list\n0. Exit to main menu.");
     }
 
-   /* public static void findParentToEdit(Scanner scan, LinkedList<Parent> parents, LinkedList<Child> childs) {
-        System.out.print("Enter the personal number of the parent you wish to edit: ");
-        String CPR = scan.next();
-
-        for (int i = 0; i < parents.size(); i++) {
-            if (parents.get(i).getCPR().equals(CPR)) {
-                System.out.println("\n" + parents.get(i) + "\n");
-                editParent(scan, parents.get(i), childs);
-            }
-        }
-    }*/
 
     public static void editParent(Scanner scan, LinkedList<Parent> parent, LinkedList<Child> childs) {
         System.out.print("Enter the personal number of the parent you wish to edit: ");
@@ -551,17 +540,7 @@ public class Main {
             }
         }
     }
-     /*public static void findEmployeeToEdit(Scanner scan, ArrayList<Employee> employees) {
-        System.out.print("Enter the first name of the child you wish to edit: ");
-        String name = scan.next();
 
-        for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getName().equals(name)) {
-                System.out.println("\n" + employees.get(i) + "\n");
-                editEmployee(scan, employees.get(i));
-            }
-        }
-    }*/
 
     public static void editEmployee(Scanner scan, ArrayList<Employee> employees) {
         System.out.print("Enter the first name of the employee you wish to edit: ");
@@ -602,7 +581,7 @@ public class Main {
             }
         }
     }
-    
+
     public static void editChild(Scanner scan, LinkedList<Child> childs) {
         System.out.print("Enter the first name of the child you wish to edit: ");
         String fname = scan.next();
