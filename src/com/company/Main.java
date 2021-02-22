@@ -429,21 +429,6 @@ public class Main {
         }
     }
 
-
-    // Metode der udskriver vores Venteliste
-   /* public static void printWaitList(ArrayList<String> waitlist) {
-        for (int i = 0; i < waitlist.size(); i++) {
-            System.out.println(waitlist.get(i));
-        }
-    }*/
-
-    // Metode der udskriver vores Employee liste
-   /* public static void printEmployeeList(ArrayList<Employee> employees) {
-        for (int i = 0; i < employees.size(); i++) {
-            System.out.println(employees.get(i));
-        }
-    }*/
-
     // Metode der finder et Child object for at redigere
     //skal flettes sammen med editChild
     public static void findChildToEdit(Scanner scan, LinkedList<Child> childs) {
