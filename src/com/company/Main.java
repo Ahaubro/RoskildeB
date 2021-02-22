@@ -63,7 +63,7 @@ public class Main {
                         }if(canswer == 4) {
                             System.out.println("You have chosen to add a child to the waiting list." +
                                     "\n----------------------------------------------------\n");
-                            waitlist.add(RegisterChild(scan, childs));
+                            RegisterChildToWaitList(scan, waitlist);
                         }else {
                             //skal der være noget her?
                         }
@@ -171,6 +171,24 @@ public class Main {
         childs.add(kid);
 
         System.out.println(kid + "\nIs now registred");
+        return kid;
+    }
+    // Metode der registrere et nyt child object til vente listen
+    public static Child RegisterChildToWaitList(Scanner scan, ArrayList<Child> waitList) {
+        System.out.println("Enter first name of the child");
+        String fname = scan.next();
+        System.out.println("Enter the last name of the child");
+        String lname = scan.next();
+        String name = fname + " " + lname;
+        System.out.println("Enter age of child");
+        int age = scan.nextInt();
+        System.out.println("Enter personal number - xxxxxx-xxxx:");
+        String personalnumber = scan.next();
+
+        Child kid = new Child(name, age, personalnumber);
+        waitList.add(kid);
+
+        System.out.println(kid + "\nIs now registred on the waitlist.");
         return kid;
     }
 
